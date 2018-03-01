@@ -1,0 +1,40 @@
+.main {
+    /* display: inline-block; */
+}
+
+.gamePart {
+    height: 400px;
+    width: 1293px;
+    margin: 0 auto;
+    border: 1px solid black;
+    position: relative;
+}
+
+.dragon {
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    /* border: 1px solid red; */
+    position: fixed;
+}
+
+.wall {
+    background-image: url(wall.jpg);
+    display: inline-block;
+    border: 1px solid;
+    width: 13px;
+    height: 150px;
+    left: 1200px;
+    position: fixed;
+}
+
+.coin {
+    display: inline-block;
+    /* height: 50px; */
+    width: 50px;
+    left: 1200px;
+    background-image: url(coin.ico);
+    background-repeat: no-repeat;
+    background-size: 50px;
+    position: fixed;
+}
