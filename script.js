@@ -6,8 +6,23 @@ let step = 0;
 var dragon = document.getElementById("dragon");
 window.addEventListener("keydown", EventListener);
 
-function EventListener(event) {
 
+//TIME
+var i = 0;
+
+function startWorker() {
+
+    setInterval(function() {
+        document.getElementById("result").innerHTML = i++;
+    }, 500);
+}
+
+
+
+
+
+function EventListener(event) {
+    startWorker();
     var buttomPos = parseInt(dragon.style.top);
     if (event.key == 'ArrowDown') {
         if (buttomPos !== 256) {
@@ -63,20 +78,16 @@ function creatElement(id) {
 function gameOver(el) {
     if (el.style.left == '170px') {
         let computedEl = parseInt(el.style.top);
-        let computedDragon = parseInt(dragon.style.top);
-        if (computedEl + 50 <= computedDragon ||
-            computedDragon + 50 <= computedEl
-        ) {
-            console.log('play');
-        } else {
+        let computedDragon = parseInt(dragon.style.top) + 67;
+        if (computedDragon >= computedEl && computedDragon <= computedEl + 150) {
+
             alert('gameover');
         }
     }
 }
+
+
+
 var creatWall = setInterval(function() {
     creatElement('wall');
 }, 2000);
-
-// var creatCoin = setInterval(function() {
-//     creatElement('coin');
-// }, 3000);
