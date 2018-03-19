@@ -3,11 +3,11 @@
 }
 
 .gamePart {
-    height: 400px;
-    width: 1293px;
-    margin: 0 auto;
-    border: 1px solid black;
-    position: relative;
+    /* height: 400px; */
+    /* width: 1293px; */
+    /* margin: 0 auto; */
+    /* border: 1px solid black; */
+    /* position: absolute; */
 }
 
 .dragon {
@@ -30,7 +30,6 @@
 
 .coin {
     display: inline-block;
-    /* height: 50px; */
     width: 50px;
     left: 1200px;
     background-image: url(coin.ico);

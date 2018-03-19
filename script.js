@@ -7,9 +7,9 @@ var dragon = document.getElementById("dragon");
 window.addEventListener("keydown", EventListener);
 
 function EventListener(event) {
+
     var buttomPos = parseInt(dragon.style.top);
     if (event.key == 'ArrowDown') {
-
         if (buttomPos !== 256) {
             step += 8;
             dragon.style.top = step + 'px';
@@ -18,7 +18,7 @@ function EventListener(event) {
             dragon.style.top = buttomPos + 'px';
         }
     } else {
-        if (buttomPos !== 8) {
+        if (buttomPos !== 8 && step !== 0) {
             step -= 8;
             dragon.style.top = step + 'px';
 
@@ -28,35 +28,36 @@ function EventListener(event) {
     }
 }
 
+
+function move(el) {
+    var pos = 1500;
+    var id = setInterval(frame, 10);
+
+    function frame() {
+
+        if (pos == 48) {
+            clearInterval(id);
+            el.parentNode.removeChild(el);
+
+        } else {
+            pos--;
+            el.style.left = pos + 'px';
+        }
+        gameOver(el);
+
+    }
+}
+
 function creatElement(id) {
     var el = document.createElement("DIV");
     el.classList.add(id);
     el.id = id;
 
     let top = getRandomArbitrary(0, 160);
-
-    // el.style.height = 150 + "px";
     el.style.top = parseInt(top) + "px";
 
     document.getElementById('gamePart').appendChild(el);
-
-    function move() {
-        var pos = 1200;
-        var id = setInterval(frame, 10);
-
-        function frame() {
-            if (pos == 48) {
-                clearInterval(id);
-                el.parentNode.removeChild(el);
-
-            } else {
-                pos--;
-                el.style.left = pos + 'px';
-            }
-            gameOver(el);
-        }
-    }
-    move();
+    move(el);
 }
 
 function gameOver(el) {
