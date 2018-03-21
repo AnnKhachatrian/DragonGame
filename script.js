@@ -2,28 +2,34 @@ function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-let step = 0;
-var dragon = document.getElementById("dragon");
-window.addEventListener("keydown", EventListener);
+
 
 
 //TIME
-var i = 0;
-var time;
+var time = (function() {
+    var i = 0;
+    return function() {
+        setInterval(function() {
+            i++;
+            document.getElementById("result").innerHTML = i;
 
-function score(param) {
-    if (param == 'start') {
-        time = setInterval(function() {
-            document.getElementById("result").innerHTML = i++;
-        }, 500);
-    } else {
-        clearInterval(time);
+        }, 300);
+        return i;
     }
+})();
+
+
+function scoreFinish() {
+    console.log(time());
+    time = 0;
 }
 
+let step = 0;
+window.addEventListener("keydown", EventListener);
 
 function EventListener(event) {
-    score('start');
+    time();
+    var dragon = document.getElementById("dragon");
     var buttomPos = parseInt(dragon.style.top);
     if (event.key == 'ArrowDown') {
         if (buttomPos !== 256) {
@@ -50,7 +56,6 @@ function move(el) {
     var id = setInterval(frame, 10);
 
     function frame() {
-
         if (pos == 48) {
             clearInterval(id);
             el.parentNode.removeChild(el);
@@ -60,7 +65,6 @@ function move(el) {
             el.style.left = pos + 'px';
         }
         gameOver(el);
-
     }
 }
 
@@ -81,8 +85,8 @@ function gameOver(el) {
         let computedEl = parseInt(el.style.top);
         let computedDragon = parseInt(dragon.style.top) + 67;
         if (computedDragon >= computedEl && computedDragon <= computedEl + 150) {
-            alert('gameover');
-            score('end');
+            // alert('gameover');
+            scoreFinish();
         }
     }
 }
