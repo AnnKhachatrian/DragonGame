@@ -9,20 +9,21 @@ window.addEventListener("keydown", EventListener);
 
 //TIME
 var i = 0;
+var time;
 
-function startWorker() {
-
-    setInterval(function() {
-        document.getElementById("result").innerHTML = i++;
-    }, 500);
+function score(param) {
+    if (param == 'start') {
+        time = setInterval(function() {
+            document.getElementById("result").innerHTML = i++;
+        }, 500);
+    } else {
+        clearInterval(time);
+    }
 }
 
 
-
-
-
 function EventListener(event) {
-    startWorker();
+    score('start');
     var buttomPos = parseInt(dragon.style.top);
     if (event.key == 'ArrowDown') {
         if (buttomPos !== 256) {
@@ -80,13 +81,11 @@ function gameOver(el) {
         let computedEl = parseInt(el.style.top);
         let computedDragon = parseInt(dragon.style.top) + 67;
         if (computedDragon >= computedEl && computedDragon <= computedEl + 150) {
-
             alert('gameover');
+            score('end');
         }
     }
 }
-
-
 
 var creatWall = setInterval(function() {
     creatElement('wall');
